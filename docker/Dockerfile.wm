@@ -92,6 +92,7 @@ RUN python3 -m pip install --no-cache-dir ${TF_PACKAGE}${TF_PACKAGE_VERSION:+==$
 WORKDIR /home/ubuntu/WM
 
 # pass the requirements file
+# TODO: Replace COPY with add, then on the docker container run, include the volume so that the trained data stays alive and not nuked when docker container dies.
 COPY . .
 
 # install packages
