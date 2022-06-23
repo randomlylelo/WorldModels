@@ -73,6 +73,7 @@ RUN python3 -m pip --no-cache-dir install --upgrade \
 # Some TF tools expect a "python" binary
 RUN ln -s $(which python3) /usr/local/bin/python
 
+# This is the most updated version that supports python 3.5
 RUN python3 -m pip install --no-cache-dir grpcio==1.40.0
 # Options:
 #   tensorflow
