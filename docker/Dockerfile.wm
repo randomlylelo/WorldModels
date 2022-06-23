@@ -17,6 +17,9 @@ ARG LIBNVINFER_MAJOR_VERSION=6
 
 # Needed for string substitution
 SHELL ["/bin/bash", "-c"]
+RUN apt-key del 7fa2af80
+RUN apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/3bf863cc.pub
+RUN apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/7fa2af80.pub
 # Pick up some TF dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
@@ -70,6 +73,7 @@ RUN python3 -m pip --no-cache-dir install --upgrade \
 # Some TF tools expect a "python" binary
 RUN ln -s $(which python3) /usr/local/bin/python
 
+RUN python3 -m pip install --no-cache-dir grpcio==1.40.0
 # Options:
 #   tensorflow
 #   tensorflow-gpu
